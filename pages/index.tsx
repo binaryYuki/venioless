@@ -66,7 +66,7 @@ const Home: React.FC = () => {
                     />
                   </svg>
                 </span>
-                <span className="block text-base align-center ms-4 py-2">
+                <span className="block text-bold text-base align-center ms-4 py-2">
                   Sign in with your King&apos;s ID
                 </span>
               </a>
