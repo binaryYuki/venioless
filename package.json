@@ -9,6 +9,7 @@
 		"lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix"
 	},
 	"dependencies": {
+		"@next/eslint-plugin-next": "^14.2.15",
 		"@nextui-org/button": "2.0.38",
 		"@nextui-org/code": "2.0.33",
 		"@nextui-org/input": "2.2.5",
@@ -21,17 +22,24 @@
 		"@nextui-org/switch": "2.0.34",
 		"@nextui-org/system": "2.2.6",
 		"@nextui-org/theme": "2.2.11",
+		"@radix-ui/react-label": "^2.1.0",
+		"@radix-ui/react-slot": "^1.1.0",
 		"@react-aria/visually-hidden": "3.8.12",
-		"clsx": "2.1.1",
+		"axios": "^1.7.7",
+		"class-variance-authority": "^0.7.0",
+		"clsx": "^2.1.1",
 		"framer-motion": "^11.11.9",
 		"i18next": "^23.16.0",
 		"intl-messageformat": "^10.5.0",
+		"lucide-react": "^0.453.0",
 		"next": "14.2.10",
 		"next-i18next": "^15.3.1",
 		"next-themes": "^0.2.1",
 		"react": "18.3.1",
 		"react-dom": "18.3.1",
-		"shadcn": "^2.1.0"
+		"shadcn": "^2.1.0",
+		"tailwind-merge": "^2.5.4",
+		"tailwindcss-animate": "^1.0.7"
 	},
 	"devDependencies": {
 		"@types/node": "20.5.7",

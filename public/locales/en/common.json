@@ -1,6 +1,13 @@
 {
   "unofficial": "This is not an Officially Website of King's College London",
   "agreement": "This is a testing system. You must agree to our T&C.",
-  "invalidInvitationCode": "Invalid Invitation Code"
+  "invalidInvitationCode": "Invalid Invitation Code",
+  "invalidHtml": "Invalid HTML, please check if the input is a complete HTML document",
+  "htmlInputPageTitle": "VenioLess",
+  "htmlInputPageDesc": "Please click here for guidance if you don't know how to do",
+  "firstParagraphHTML": "Source code of the current page",
+  "firstParagraphHTMLPlaceholder": "Please paste the complete source code of the current page here",
+  "secondParagraphHTML": "Source code of the previous page",
+  "secondParagraphHTMLPlaceholder": "Please paste the complete source code of the previous page here"
 }
 

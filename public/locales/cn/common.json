@@ -1,6 +1,13 @@
 {
   "unofficial": "这不是伦敦国王学院的官方网站",
   "agreement": "这是一个正在测试的系统。使用本系统，意味着您同意我们的条款和条件。",
-  "invalidInvitationCode": "无效的邀请码"
+  "invalidInvitationCode": "无效的邀请码",
+  "invalidHtml": "无效的HTML, 请检查输入的内容是否为完整的HTML代码",
+  "htmlInputPageTitle": "VenioLess",
+  "htmlInputPageDesc": "如果您不知道如何操作，请点击这里查看教程",
+  "firstParagraphHTML": "Current页面的源代码",
+  "firstParagraphHTMLPlaceholder": "请在此处粘贴Current页面的完整源代码",
+  "secondParagraphHTML": "Previous页面的源代码",
+  "secondParagraphHTMLPlaceholder": "请在此处粘贴Previous页面的完整源代码"
 }
 
