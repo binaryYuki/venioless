@@ -22,11 +22,37 @@ const Home: React.FC = () => {
     setShowNewLayout(true);
   };
 
-  const verifyInvitationCode = (code: string) => {
-    if (code !== "1234") {
-      setErrorMessage(t("invalidInvitationCode"));
-    } else {
-      setErrorMessage("");
+  const verifyInvitationCode = async (code: string) => {
+    const backend = process.env.NEXT_PUBLIC_BACKEND_URL;
+
+    if (backend === undefined) {
+      throw new Error("BACKEND_URL is not defined");
+    }
+    const url = `${backend}/invitations/verify`;
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ code }),
+      });
+
+      if (response.status === 200) {
+        const jwtToken = response.headers.get("Authorization");
+
+        if (jwtToken) {
+          localStorage.setItem("token", jwtToken);
+          setErrorMessage("");
+          window.location.href = "/input";
+        } else {
+        }
+      } else {
+        setErrorMessage("Invalid invitation code");
+      }
+    } catch (error) {
+      setErrorMessage("An error occurred during verification");
     }
   };
 
@@ -35,6 +61,7 @@ const Home: React.FC = () => {
       {!showNewLayout && (
         <>
           <div className="transition duration-500 ease-in-out transform">
+            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
             <a href="/" onClick={handleSignInClick}>
               <Image
                 alt="user profile photo"
@@ -48,6 +75,7 @@ const Home: React.FC = () => {
 
           <div className="w-full sm:max-w-md mt-6 px-6 py-2 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg transition duration-500 ease-in-out transform">
             <div className="mt-4 mb-4 px-4 py-2 rounded dark:text-slate-100 flex flex-row justify-center">
+              {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
               <a
                 className="flex align-center me-4"
                 href="/"
@@ -88,7 +116,7 @@ const Home: React.FC = () => {
             <h2 className="text-red-500">{t("unofficial")}</h2>
             <p className="mt-2">{t("agreement")}</p>
             <input
-              className="mt-4 p-2 border rounded"
+              className="mt-4 p-2 border rounded bg-white"
               placeholder="Enter invitation code"
               type="text"
               value={invitationCode}
