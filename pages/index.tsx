@@ -47,6 +47,10 @@ const Home: React.FC = () => {
           setErrorMessage("");
           window.location.href = "/input";
         } else {
+          window.location.reload();
+          setErrorMessage(
+            "An error occurred during verification, please contact the administrator",
+          );
         }
       } else {
         setErrorMessage("Invalid invitation code");
