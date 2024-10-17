@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import { GetStaticProps } from "next";
@@ -20,25 +21,67 @@ export default function InputHtmlPage() {
   const [error, setError] = useState<string>("");
   const { t } = useTranslation("common");
 
-  const validateHtml = (html: string): boolean => {
-    return (
-      /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/.test(html) &&
-      /<!DOCTYPE html>/.test(html) &&
-      /<title>Venio - Attendance Management<\/title>/.test(html)
-    );
+  const parseAndValidateHtml = (html: string, htmlTag: number): string => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+
+    // Check title
+    const title = doc.querySelector("title");
+
+    if (!title || title.textContent !== " Venio - Attendance Management ") {
+      return t("missingOrIncorrectTitle");
+    }
+
+    // Check current-activity tag
+    const currentActivity = doc.querySelector("current-activity");
+
+    // html2 不参加这个检查
+    if (!currentActivity && htmlTag === 1) {
+      return t("missingCurrentActivityTag");
+    }
+
+    return "";
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
 
-    if (!validateHtml(html1) || !validateHtml(html2)) {
-      setError(t("invalidHtml"));
+    const error1 = parseAndValidateHtml(html1, 1);
+    const error2 = parseAndValidateHtml(html2, 2);
+
+    if (error1) {
+      setError(t("firstParagraphInvalid") + ": " + error1);
 
       return;
     }
 
-    // You can add further processing here
+    if (error2) {
+      setError(t("secondParagraphInvalid") + ": " + error2);
+
+      return;
+    }
+
+    try {
+      const backend = process.env.NEXT_PUBLIC_BACKEND_URL;
+
+      if (!backend) {
+        throw new Error("BACKEND_URL is not defined");
+      }
+
+      const url = `${backend}/getAttendanceInfo`;
+      const response = await axios.post(url, {
+        previous: html2,
+        current: html1,
+      });
+
+      if (response.status === 200) {
+      } else {
+        setError(t("verificationFailed"));
+      }
+    } catch (error) {
+      setError(t("verificationError"));
+    }
   };
 
   return (
@@ -76,7 +119,7 @@ export default function InputHtmlPage() {
           className="w-full bg-blue-500 text-white hover:bg-blue-600"
           type="submit"
         >
-          提交
+          {t("submitButton")}
         </Button>
         {error && <div className="text-red-500 mt-2">{error}</div>}
       </form>

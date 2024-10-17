@@ -4,6 +4,7 @@ import "tailwindcss/tailwind.css";
 import { GetStaticProps } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import axios from "axios";
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => ({
   props: {
@@ -31,16 +32,10 @@ const Home: React.FC = () => {
     const url = `${backend}/invitations/verify`;
 
     try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ code }),
-      });
+      const response = await axios.post(url, { code });
 
       if (response.status === 200) {
-        const jwtToken = response.headers.get("Authorization");
+        const jwtToken = response.data.token;
 
         if (jwtToken) {
           localStorage.setItem("token", jwtToken);
@@ -55,8 +50,13 @@ const Home: React.FC = () => {
       } else {
         setErrorMessage("Invalid invitation code");
       }
-    } catch (error) {
-      setErrorMessage("An error occurred during verification");
+    } catch (error: any) {
+      // 取返回的 data["error"] 作为错误信息
+      if (error.response) {
+        setErrorMessage(error.response.data.error);
+      } else {
+        setErrorMessage("An error occurred during verification");
+      }
     }
   };
 
