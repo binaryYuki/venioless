@@ -66,7 +66,7 @@ export default function InputHtmlPage() {
       const backend = process.env.NEXT_PUBLIC_BACKEND_URL;
 
       if (!backend) {
-        throw new Error("BACKEND_URL is not defined");
+        setError(t("backendUrlNotDefined"));
       }
 
       const url = `${backend}/getAttendanceInfo`;
@@ -76,6 +76,9 @@ export default function InputHtmlPage() {
       });
 
       if (response.status === 200) {
+        // 储存到 localStorage key 为 attend_info
+        localStorage.setItem("attend_info", JSON.stringify(response.data));
+        window.location.href = "/record";
       } else {
         setError(t("verificationFailed"));
       }
