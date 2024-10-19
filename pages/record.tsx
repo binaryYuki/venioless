@@ -35,8 +35,11 @@ export default function CourseAttendanceForm() {
     const attendInfo = localStorage.getItem("attend_info");
 
     if (!attendInfo) {
-      setError("出勤信息未找到，请输入信息。");
-      router.push("/input").then((r) => r);
+      setError(t("noAttendanceData"));
+      // 4s
+      setTimeout(() => {
+        router.push("/input").then((r) => r);
+      }, 4000);
     } else {
       try {
         const parsedData = JSON.parse(attendInfo);
@@ -56,7 +59,7 @@ export default function CourseAttendanceForm() {
           setError(t("attendanceDataError"));
         }
       } catch {
-        setError("出勤信息格式错误，请检查数据。");
+        setError(t("attendanceDataError"));
       }
     }
   }, [router]);
@@ -90,6 +93,10 @@ export default function CourseAttendanceForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setModalOpen(true);
+  };
+
+  const removePresentedClasses = (courses: Course[]) => {
+    return courses.filter((course) => !course.initiallyPresent);
   };
 
   const handleConfirm = async () => {
@@ -160,26 +167,28 @@ export default function CourseAttendanceForm() {
     });
   };
 
+  const filteredCourses = removePresentedClasses(selectedCourses);
+
   const columns: ColumnsType<Course> = [
     {
-      title: "课程名称",
+      title: t("courseName"),
       dataIndex: "course_name",
       key: "course_name",
     },
     {
-      title: "开始时间",
+      title: t("startTime"),
       dataIndex: "start_time",
       key: "start_time",
       render: (text: string) => formatDateTime(text),
     },
     {
-      title: "结束时间",
+      title: t("endTime"),
       dataIndex: "end_time",
       key: "end_time",
       render: (text: string) => formatDateTime(text),
     },
     {
-      title: "出勤状态",
+      title: t("present"),
       key: "present",
       render: (_: any, course: Course) => (
         <Checkbox
@@ -195,32 +204,34 @@ export default function CourseAttendanceForm() {
 
   return (
     <div className="max-w-4xl mx-auto p-6">
-      <h1 className="text-3xl font-bold text-center mb-6">课程出勤表</h1>
+      <h1 className="text-3xl font-bold text-center mb-6">
+        {t("attendanceTable")}
+      </h1>
       {error && (
         <div className="mb-4 p-4 text-red-700 bg-red-100 rounded">{error}</div>
       )}
       <form onSubmit={handleSubmit}>
         <Table<Course> columns={columns} dataSource={courses} rowKey="id" />
         <Button className="w-full mt-6" htmlType="submit" type="primary">
-          提交出勤记录
+          {t("submit")}
         </Button>
       </form>
 
       <Modal
         open={modalOpen}
-        title="确认出勤"
+        title={t("confirmChoice")}
         onCancel={() => setModalOpen(false)}
         onOk={handleConfirm}
       >
-        <p>已选择的课程：</p>
-        {selectedCourses.length > 0 ? (
-          selectedCourses.map((course) => (
+        {filteredCourses.length > 0 ? (
+          filteredCourses.map((course) => (
             <p key={course.activity_datetime} className="mb-2">
-              {course.course_name}
+              {course.course_name} {formatDateTime(course.start_time)} -{" "}
+              {formatDateTime(course.end_time)}
             </p>
           ))
         ) : (
-          <p>没有选定课程。</p>
+          <p>{t("noChosenCourse")}</p>
         )}
       </Modal>
     </div>

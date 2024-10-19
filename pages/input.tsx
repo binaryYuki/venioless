@@ -104,12 +104,27 @@ export default function InputHtmlPage() {
     }
   };
 
+  const pageDescription = (
+    <>
+      {t("htmlInputPageDesc.start") + " "}
+      <a
+        href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element"
+        rel="noopener noreferrer"
+        style={{ textDecoration: "underline", color: "blue" }}
+        target="_blank"
+      >
+        {t("htmlInputPageDesc.middle")}
+      </a>
+      {" " + t("htmlInputPageDesc.end")}
+    </>
+  );
+
   return (
     <div className="container mx-auto p-6 max-w-4xl bg-white text-gray-800 min-h-screen flex flex-col items-center">
       <h1 className="text-3xl font-bold mb-6 text-center">
         {t("htmlInputPageTitle")}
       </h1>
-      <p className="text-lg text-center mb-6">{t("htmlInputPageDesc")}</p>
+      <p className="text-lg text-center mb-6">{pageDescription}</p>
       <form className="space-y-6 w-full" onSubmit={handleSubmit}>
         <div className="space-y-2">
           <Label className="text-lg font-medium" htmlFor="html1">

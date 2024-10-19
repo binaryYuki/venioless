@@ -4,6 +4,9 @@
   "invalidInvitationCode": "Invalid Invitation Code",
   "invalidHtml": "Invalid HTML, please check if the input is a complete HTML document",
   "htmlInputPageTitle": "VenioLess",
+  "htmlInputPageDesc.start": "Please click",
+  "htmlInputPageDesc.middle": "here",
+  "htmlInputPageDesc.end": "here for guidance if you don't know how to do.",
   "htmlInputPageDesc": "Please click here for guidance if you don't know how to do",
   "firstParagraphHTML": "Source code of the current page",
   "firstParagraphHTMLPlaceholder": "Please paste the complete source code of the current page here",
@@ -16,6 +19,16 @@
   "successfullySubmitted": "Submitted successfully, please go to venio to check the update, or click here to view",
   "unauthorized": "Login expired, please log in again",
   "nothingToSubmit": "You have no data to submit",
-  "loginSuccess": "Login successful"
+  "loginSuccess": "Login successful",
+  "noAttendanceData": "No data found, please re-enter, redirecting...",
+  "attendanceTable": "Attendance data summary",
+  "submit": "Submit",
+  "courseName": "Course Name",
+  "startTime": "Start Time",
+  "endTime": "End Time",
+  "attendanceStatus": "Attendance Status",
+  "confirmChoice": "Confirm Your Choice",
+  "chosenCourse": "Chosen Course：",
+  "noChosenCourse": "You have not chosen any course"
 }
 

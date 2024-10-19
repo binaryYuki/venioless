@@ -4,7 +4,9 @@
   "invalidInvitationCode": "无效的邀请码",
   "invalidHtml": "无效的HTML, 请检查输入的内容是否为完整的HTML代码",
   "htmlInputPageTitle": "VenioLess",
-  "htmlInputPageDesc": "如果您不知道如何操作，请点击这里查看教程",
+  "htmlInputPageDesc.start": "如果您不知道如何操作，请点击",
+  "htmlInputPageDesc.middle": "这里",
+  "htmlInputPageDesc.end": "查看教程",
   "firstParagraphHTML": "Current页面的源代码",
   "firstParagraphHTMLPlaceholder": "请在此处粘贴Current页面的完整源代码",
   "secondParagraphHTML": "Previous页面的源代码",
@@ -16,6 +18,16 @@
   "successfullySubmitted": "提交成功, 请前往 venio 查看更新，或者点击这里查看",
   "unauthorized": "登录过期，请重新登录",
   "nothingToSubmit": "没有需要提交的数据",
-  "loginSuccess": "登录成功"
+  "loginSuccess": "登录成功",
+  "noAttendanceData": "未找到数据，请重新输入，正在跳转...",
+  "attendanceTable": "出勤数据汇总",
+  "submit": "提交",
+  "courseName": "课程名称",
+  "startTime": "开始时间",
+  "endTime": "结束时间",
+  "attendanceStatus": "出勤状态",
+  "confirmChoice": "确认出勤",
+  "chosenCourse：": "已选择的课程：",
+  "noChosenCourse": "您未选择任何课程"
 }
 
