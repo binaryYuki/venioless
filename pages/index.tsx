@@ -1,10 +1,11 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "tailwindcss/tailwind.css";
 import { GetStaticProps } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import axios from "axios";
+import { message } from "antd";
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => ({
   props: {
@@ -12,11 +13,42 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => ({
   },
 });
 
+export const checkToken = async () => {
+  const token = localStorage.getItem("token");
+
+  if (token) {
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/jwt`,
+      );
+
+      if (response.status === 200) {
+        message.success("Welcome back!");
+        // 3s
+        setTimeout(() => {
+          window.location.href = "/input";
+        }, 3000);
+      }
+    } catch (error) {
+      // 清空 token
+      localStorage.removeItem("token");
+    }
+
+    // 清空 token
+    localStorage.removeItem("token");
+  }
+};
+
 const Home: React.FC = () => {
   const { t } = useTranslation("common");
   const [showNewLayout, setShowNewLayout] = useState<boolean>(false);
   const [invitationCode, setInvitationCode] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
+
+  useEffect(() => {
+    checkToken().then((r) => r);
+  }, []);
 
   const handleSignInClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
@@ -38,24 +70,30 @@ const Home: React.FC = () => {
         const jwtToken = response.data.token;
 
         if (jwtToken) {
-          localStorage.setItem("token", jwtToken);
+          const expiresIn = 3600 * 1000; // 1 hour in milliseconds
+          const now = Date.now();
+
+          const tokenObject = {
+            value: jwtToken,
+            expiresAt: now + expiresIn,
+          };
+
+          localStorage.setItem("token", JSON.stringify(tokenObject));
           setErrorMessage("");
           window.location.href = "/input";
         } else {
           window.location.reload();
-          setErrorMessage(
-            "An error occurred during verification, please contact the administrator",
-          );
+          setErrorMessage(t("JWTSetError"));
         }
       } else {
-        setErrorMessage("Invalid invitation code");
+        setErrorMessage(t("invalidInvitationCode"));
       }
     } catch (error: any) {
       // 取返回的 data["error"] 作为错误信息
       if (error.response) {
         setErrorMessage(error.response.data.error);
       } else {
-        setErrorMessage("An error occurred during verification");
+        setErrorMessage(t("verificationCodeError"));
       }
     }
   };

@@ -9,6 +9,13 @@
   "firstParagraphHTMLPlaceholder": "Please paste the complete source code of the current page here",
   "secondParagraphHTML": "Source code of the previous page",
   "secondParagraphHTMLPlaceholder": "Please paste the complete source code of the previous page here",
-  "attendanceDataError": "Attendance data format error, please check the data."
+  "attendanceDataError": "Attendance data format error, please check the data.",
+  "JWTSetError": "App running into problem, please contact the administrator.",
+  "verificationCodeError": "Verification error, please check if the code is correct or contact the administrator.",
+  "networkError": "Network error, please check if the network connection is normal.",
+  "successfullySubmitted": "Submitted successfully, please go to venio to check the update, or click here to view",
+  "unauthorized": "Login expired, please log in again",
+  "nothingToSubmit": "You have no data to submit",
+  "loginSuccess": "Login successful"
 }
 

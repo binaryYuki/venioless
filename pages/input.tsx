@@ -70,6 +70,16 @@ export default function InputHtmlPage() {
       }
 
       const url = `${backend}/getAttendanceInfo`;
+      const JWT = localStorage.getItem("token")
+        ? JSON.parse(localStorage.getItem("token") || "")
+        : null;
+
+      if (!JWT) {
+        setError(t("unauthorized"));
+        window.location.href = "/";
+      } else {
+        axios.defaults.headers.common["Authorization"] = `Bearer ${JWT.value}`;
+      }
       const response = await axios.post(url, {
         previous: html2,
         current: html1,
@@ -79,6 +89,13 @@ export default function InputHtmlPage() {
         // 储存到 localStorage key 为 attend_info
         localStorage.setItem("attend_info", JSON.stringify(response.data));
         window.location.href = "/record";
+      } else if (response.status === 204) {
+        setError(t("unauthorized"));
+        // clear token
+        localStorage.removeItem("token");
+        setTimeout(() => {
+          window.location.href = "/";
+        }, 5000);
       } else {
         setError(t("verificationFailed"));
       }

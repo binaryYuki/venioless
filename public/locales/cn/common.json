@@ -9,6 +9,13 @@
   "firstParagraphHTMLPlaceholder": "请在此处粘贴Current页面的完整源代码",
   "secondParagraphHTML": "Previous页面的源代码",
   "secondParagraphHTMLPlaceholder": "请在此处粘贴Previous页面的完整源代码",
-  "attendanceDataError": "出勤信息格式错误，请检查数据。"
+  "attendanceDataError": "出勤信息格式错误，请检查数据。",
+  "JWTSetError": "app 运行出现问题，请联系管理员。",
+  "verificationCodeError": "验证出错，请检查验证码是否正确或联系管理员。",
+  "networkError": "网络错误，请检查网络连接是否正常。",
+  "successfullySubmitted": "提交成功, 请前往 venio 查看更新，或者点击这里查看",
+  "unauthorized": "登录过期，请重新登录",
+  "nothingToSubmit": "没有需要提交的数据",
+  "loginSuccess": "登录成功"
 }
 

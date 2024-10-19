@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { GetStaticProps } from "next";
+import axios from "axios";
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => ({
   props: {
@@ -93,13 +94,26 @@ export default function CourseAttendanceForm() {
 
   const handleConfirm = async () => {
     setModalOpen(false);
+    const JWT = localStorage.getItem("token")
+      ? JSON.parse(localStorage.getItem("token") || "")
+      : null;
 
+    if (!JWT) {
+      setError(t("unauthorized"));
+      // 3s
+      setTimeout(() => {
+        router.push("/").then((r) => r);
+      }, 3000);
+    } else {
+      axios.defaults.headers.common["Authorization"] = `Bearer ${JWT.value}`;
+    }
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/mark-attendance`,
         {
           method: "POST",
           headers: {
+            Authorization: `Bearer ${JWT.value}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ courses: selectedCourses }),
@@ -107,11 +121,20 @@ export default function CourseAttendanceForm() {
       );
 
       if (!response.ok) {
-        message.error("网络错误");
+        message.error(t("networkError"));
       }
-      // if {"status":[{"status":"success","response":{"status":"ok","message":"success"}}]}
+      const responseData = await response.json();
+
+      if (responseData.status && responseData.status.length === 0) {
+        message.success(t("successfullySubmitted"));
+        localStorage.removeItem("attend_info");
+        // await 3 seconds and redirect to home page
+        setTimeout(() => {
+          router.push("/").then((r) => r);
+        }, 3000);
+      }
       if ((await response.json()).status[0].status === "success") {
-        message.success("出勤记录提交成功！");
+        message.success(t("successfullySubmitted"));
         localStorage.removeItem("attend_info");
         // await 3 seconds and redirect to home page
         setTimeout(() => {
