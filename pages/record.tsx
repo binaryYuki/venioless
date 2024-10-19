@@ -105,7 +105,7 @@ export default function CourseAttendanceForm() {
         router.push("/").then((r) => r);
       }, 3000);
     } else {
-      axios.defaults.headers.common["Authorization"] = `Bearer ${JWT.value}`;
+      axios.defaults.headers.common["Authorization"] = `${JWT.value}`;
     }
     try {
       const response = await fetch(
@@ -113,7 +113,7 @@ export default function CourseAttendanceForm() {
         {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${JWT.value}`,
+            Authorization: `${JWT.value}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ courses: selectedCourses }),

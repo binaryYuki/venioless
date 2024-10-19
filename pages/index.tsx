@@ -17,7 +17,7 @@ export const checkToken = async () => {
   const token = localStorage.getItem("token");
 
   if (token) {
-    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    axios.defaults.headers.common["Authorization"] = `${token}`;
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/jwt`,

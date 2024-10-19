@@ -78,7 +78,7 @@ export default function InputHtmlPage() {
         setError(t("unauthorized"));
         window.location.href = "/";
       } else {
-        axios.defaults.headers.common["Authorization"] = `Bearer ${JWT.value}`;
+        axios.defaults.headers.common["Authorization"] = `${JWT.value}`;
       }
       const response = await axios.post(url, {
         previous: html2,
