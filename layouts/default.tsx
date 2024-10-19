@@ -1,8 +1,12 @@
+import { Layout } from "antd";
 import { Link } from "@nextui-org/link";
 
 import { Head } from "./head";
 
 import { Navbar } from "@/components/navbar";
+import "antd/dist/reset.css"; // 引入 Ant Design 样式
+
+const { Header, Content, Footer } = Layout;
 
 export default function DefaultLayout({
   children,
@@ -10,13 +14,15 @@ export default function DefaultLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative flex flex-col h-screen">
+    <Layout className="min-h-screen">
       <Head />
-      <Navbar />
-      <main className="container mx-auto max-w-7xl px-6 flex-grow pt-16">
+      <Header className="bg-white shadow-md">
+        <Navbar />
+      </Header>
+      <Content className="container mx-auto max-w-7xl px-6 pt-16">
         {children}
-      </main>
-      <footer className="w-full flex items-center justify-center py-3">
+      </Content>
+      <Footer className="w-full flex items-center justify-center py-3">
         <Link
           isExternal
           className="flex items-center gap-1 text-current"
@@ -24,9 +30,9 @@ export default function DefaultLayout({
           title="nextui.org homepage"
         >
           <span className="text-default-600">Powered by</span>
-          <p className="text-primary">NextUI</p>
+          <p className="text-primary">Mr. Nobody</p>
         </Link>
-      </footer>
-    </div>
+      </Footer>
+    </Layout>
   );
 }
