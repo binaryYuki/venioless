@@ -8,6 +8,7 @@
   "firstParagraphHTML": "Current页面的源代码",
   "firstParagraphHTMLPlaceholder": "请在此处粘贴Current页面的完整源代码",
   "secondParagraphHTML": "Previous页面的源代码",
-  "secondParagraphHTMLPlaceholder": "请在此处粘贴Previous页面的完整源代码"
+  "secondParagraphHTMLPlaceholder": "请在此处粘贴Previous页面的完整源代码",
+  "attendanceDataError": "出勤信息格式错误，请检查数据。"
 }
 

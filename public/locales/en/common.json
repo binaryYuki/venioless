@@ -8,6 +8,7 @@
   "firstParagraphHTML": "Source code of the current page",
   "firstParagraphHTMLPlaceholder": "Please paste the complete source code of the current page here",
   "secondParagraphHTML": "Source code of the previous page",
-  "secondParagraphHTMLPlaceholder": "Please paste the complete source code of the previous page here"
+  "secondParagraphHTMLPlaceholder": "Please paste the complete source code of the previous page here",
+  "attendanceDataError": "Attendance data format error, please check the data."
 }
 

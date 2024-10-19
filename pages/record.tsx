@@ -3,6 +3,15 @@ import type { ColumnsType } from "antd/es/table";
 import React, { useState, useEffect } from "react";
 import { Checkbox, Button, Modal, Table, message } from "antd";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { GetStaticProps } from "next";
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => ({
+  props: {
+    ...(await serverSideTranslations(locale ?? "en", ["common"])),
+  },
+});
 
 interface Course {
   course_name: string;
@@ -19,6 +28,7 @@ export default function CourseAttendanceForm() {
   const [error, setError] = useState<string | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const router = useRouter();
+  const { t } = useTranslation("common");
 
   useEffect(() => {
     const attendInfo = localStorage.getItem("attend_info");
@@ -42,7 +52,7 @@ export default function CourseAttendanceForm() {
             coursesWithInitial.filter((course) => course.present),
           );
         } else {
-          setError("出勤信息格式错误，请检查数据。");
+          setError(t("attendanceDataError"));
         }
       } catch {
         setError("出勤信息格式错误，请检查数据。");
