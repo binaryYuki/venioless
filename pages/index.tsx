@@ -14,14 +14,12 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => ({
 });
 
 export const checkToken = async () => {
-  // if request.domain = venioless.vercel.app jump to venioless.vercel.app
   if (window.location.hostname === "venioless.vercel.app") {
     window.location.href = "https://venioless.tzpro.uk";
   }
   if (window.location.hostname === "localhost") {
     window.location.href = "https://venioless.tzpro.uk";
   }
-  console.log(window.location.hostname);
   const token = localStorage.getItem("token");
 
   if (token) {
