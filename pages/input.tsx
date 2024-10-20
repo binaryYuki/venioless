@@ -108,7 +108,7 @@ export default function InputHtmlPage() {
     <>
       {t("htmlInputPageDesc.start") + " "}
       <a
-        href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element"
+        href="https://support.google.com/webmasters/answer/11626894?hl=en-GB"
         rel="noopener noreferrer"
         style={{ textDecoration: "underline", color: "blue" }}
         target="_blank"
