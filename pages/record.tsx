@@ -148,10 +148,10 @@ export default function CourseAttendanceForm() {
           router.push("/").then((r) => r);
         }, 3000);
       }
-      message.success("出勤记录提交成功！");
+      message.success(t("successfullySubmitted"));
       localStorage.removeItem("attend_info");
     } catch {
-      setError("提交出勤记录失败");
+      setError(t("networkError"));
     }
   };
 
