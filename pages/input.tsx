@@ -47,20 +47,20 @@ export default function InputHtmlPage() {
     e.preventDefault();
     setError("");
 
-    // const error1 = parseAndValidateHtml(html1, 1);
-    // const error2 = parseAndValidateHtml(html2, 2);
-    //
-    // if (error1) {
-    //   setError(t("firstParagraphInvalid") + ": " + error1);
-    //
-    //   return;
-    // }
-    //
-    // if (error2) {
-    //   setError(t("secondParagraphInvalid") + ": " + error2);
-    //
-    //   return;
-    // }
+    const error1 = parseAndValidateHtml(html1, 1);
+    const error2 = parseAndValidateHtml(html2, 2);
+
+    if (error1) {
+      setError(t("firstParagraphInvalid") + ": " + error1);
+
+      return;
+    }
+
+    if (error2) {
+      setError(t("secondParagraphInvalid") + ": " + error2);
+
+      return;
+    }
 
     try {
       const backend = process.env.NEXT_PUBLIC_BACKEND_URL;

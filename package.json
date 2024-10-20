@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "next dev --turbo",
+		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
 		"lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix"
@@ -27,6 +27,7 @@
 		"@radix-ui/react-label": "^2.1.0",
 		"@radix-ui/react-slot": "^1.1.0",
 		"@react-aria/visually-hidden": "3.8.12",
+		"@sentry/nextjs": "^8",
 		"antd": "^5.21.4",
 		"axios": "^1.7.7",
 		"class-variance-authority": "^0.7.0",
