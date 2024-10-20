@@ -17,7 +17,10 @@ export const checkToken = async () => {
   if (window.location.hostname === "venioless.vercel.app") {
     window.location.href = "https://venioless.tzpro.uk";
   }
-  if (window.location.hostname === "localhost") {
+  if (
+    window.location.hostname === "localhost" &&
+    process.env.NODE_ENV === "production"
+  ) {
     window.location.href = "https://venioless.tzpro.uk";
   }
   const token = localStorage.getItem("token");
@@ -64,9 +67,10 @@ const Home: React.FC = () => {
   const verifyInvitationCode = async (code: string) => {
     const backend = process.env.NEXT_PUBLIC_BACKEND_URL;
 
-    if (backend === undefined) {
+    if (!backend) {
       throw new Error("BACKEND_URL is not defined");
     }
+
     const url = `${backend}/invitations/verify`;
 
     try {
@@ -77,27 +81,30 @@ const Home: React.FC = () => {
 
         if (jwtToken) {
           const expiresIn = 3600 * 1000; // 1 hour in milliseconds
-          const now = Date.now();
-
           const tokenObject = {
             value: jwtToken,
-            expiresAt: now + expiresIn,
+            expiresAt: Date.now() + expiresIn,
           };
 
           localStorage.setItem("token", JSON.stringify(tokenObject));
           setErrorMessage("");
           window.location.href = "/input";
         } else {
-          window.location.reload();
           setErrorMessage(t("JWTSetError"));
+          window.location.reload();
         }
       } else {
         setErrorMessage(t("invalidInvitationCode"));
       }
     } catch (error: any) {
-      // 取返回的 data["error"] 作为错误信息
       if (error.response) {
-        setErrorMessage(error.response.data.error);
+        if (error.response.status === 429) {
+          setErrorMessage(t("rateLimitError"));
+        } else {
+          setErrorMessage(
+            error.response.data.error || t("verificationCodeError"),
+          );
+        }
       } else {
         setErrorMessage(t("verificationCodeError"));
       }
