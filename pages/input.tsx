@@ -97,7 +97,13 @@ export default function InputHtmlPage() {
           window.location.href = "/";
         }, 5000);
       } else {
-        setError(t("verificationFailed"));
+        const errorCode: number = response.data.error;
+
+        if (errorCode === 102) {
+          setError(t("htmlInputError102"));
+        } else {
+          setError(t("verificationError"));
+        }
       }
     } catch (error) {
       setError(t("verificationError"));
