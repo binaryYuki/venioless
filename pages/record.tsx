@@ -158,10 +158,10 @@ export default function CourseAttendanceForm() {
 
         if (errorCode === 101) {
           setError(t("tokenExpired"));
-          // 3s
+          // 30s
           setTimeout(() => {
             router.push("/").then((r) => r);
-          }, 3000);
+          }, 30000);
         }
         message.error(`${t("recordError")} ${t(`errorCode${errorCode}`)}`);
       }

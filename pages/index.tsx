@@ -23,10 +23,12 @@ export const checkToken = async () => {
   ) {
     window.location.href = "https://venioless.tzpro.uk";
   }
-  const token = localStorage.getItem("token");
+  const JWT = localStorage.getItem("token")
+    ? JSON.parse(localStorage.getItem("token") || "")
+    : null;
 
-  if (token) {
-    axios.defaults.headers.common["Authorization"] = `${token}`;
+  if (JWT) {
+    axios.defaults.headers.common["Authorization"] = `${JWT.value}`;
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/jwt`,
