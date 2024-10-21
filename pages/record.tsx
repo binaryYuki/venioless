@@ -129,27 +129,39 @@ export default function CourseAttendanceForm() {
 
       if (!response.ok) {
         message.error(t("networkError"));
+
+        return;
       }
+
       const responseData = await response.json();
 
       if (responseData.status && responseData.status.length === 0) {
         message.success(t("successfullySubmitted"));
         localStorage.removeItem("attend_info");
-        // await 3 seconds and redirect to home page
         setTimeout(() => {
           router.push("/").then((r) => r);
         }, 3000);
-      }
-      if ((await response.json()).status[0].status === "success") {
+      } else if (responseData.status[0].status === "success") {
         message.success(t("successfullySubmitted"));
         localStorage.removeItem("attend_info");
-        // await 3 seconds and redirect to home page
         setTimeout(() => {
           router.push("/").then((r) => r);
         }, 3000);
+      } else if (responseData.error) {
+        const errorIndex = responseData.error.index + 1; // Assuming index is 0-based
+        const errorCode = responseData.error.code;
+
+        if (errorCode === 101) {
+          setError(t("tokenExpired"));
+          // 3s
+          setTimeout(() => {
+            router.push("/").then((r) => r);
+          }, 3000);
+        }
+        message.error(
+          `${t("recordError")} ${errorIndex}: ${t(`errorCode${errorCode}`)}`,
+        );
       }
-      message.success(t("successfullySubmitted"));
-      localStorage.removeItem("attend_info");
     } catch {
       setError(t("networkError"));
     }

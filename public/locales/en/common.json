@@ -30,6 +30,7 @@
   "confirmChoice": "Confirm Your Choice",
   "chosenCourse": "Chosen Course：",
   "noChosenCourse": "You have not chosen any course",
-  "rateLimitError": "Request too frequent, please try again later"
+  "rateLimitError": "Request too frequent, please try again later",
+  "tokenExpired": "Venio verification expired, please try again after re-login to Venio system"
 }
 

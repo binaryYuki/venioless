@@ -29,6 +29,7 @@
   "confirmChoice": "确认出勤",
   "chosenCourse：": "已选择的课程：",
   "noChosenCourse": "您未选择任何课程",
-  "rateLimitError": "请求过于频繁，请稍后再试"
+  "rateLimitError": "请求过于频繁，请稍后再试",
+  "tokenExpired": "Venio验证过期，请尝试重新登录 Venio 系统后再试"
 }
 
