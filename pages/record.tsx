@@ -115,6 +115,12 @@ export default function CourseAttendanceForm() {
       axios.defaults.headers.common["Authorization"] = `${JWT.value}`;
     }
     try {
+      // 如果 selectedCourses 为空，直接返回
+      if (selectedCourses.length === 0) {
+        message.error(t("noChosenCourse"));
+
+        return;
+      }
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/mark-attendance`,
         {
