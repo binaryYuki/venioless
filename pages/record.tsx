@@ -153,9 +153,8 @@ export default function CourseAttendanceForm() {
         setTimeout(() => {
           router.push("/").then((r) => r);
         }, 3000);
-      } else if (responseData.error) {
-        const errorIndex = responseData.error.index + 1; // Assuming index is 0-based
-        const errorCode = responseData.error;
+      } else if (responseData.status[0].status === "failed") {
+        const errorCode = responseData.status[0].error;
 
         if (errorCode === 101) {
           setError(t("tokenExpired"));
@@ -164,9 +163,7 @@ export default function CourseAttendanceForm() {
             router.push("/").then((r) => r);
           }, 3000);
         }
-        message.error(
-          `${t("recordError")} ${errorIndex}: ${t(`errorCode${errorCode}`)}`,
-        );
+        message.error(`${t("recordError")} ${t(`errorCode${errorCode}`)}`);
       }
     } catch {
       setError(t("networkError"));
