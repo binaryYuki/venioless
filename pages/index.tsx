@@ -38,7 +38,7 @@ export const checkToken = async () => {
         message.success("Welcome back!");
         // 3s
         setTimeout(() => {
-          window.location.href = "/input";
+          window.location.href = "/video";
         }, 3000);
       }
     } catch (error) {
