@@ -90,7 +90,7 @@ const Home: React.FC = () => {
 
           localStorage.setItem("token", JSON.stringify(tokenObject));
           setErrorMessage("");
-          window.location.href = "/input";
+          window.location.href = "/video";
         } else {
           setErrorMessage(t("JWTSetError"));
           window.location.reload();
