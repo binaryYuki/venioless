@@ -149,7 +149,7 @@ export default function CourseAttendanceForm() {
         }, 3000);
       } else if (responseData.error) {
         const errorIndex = responseData.error.index + 1; // Assuming index is 0-based
-        const errorCode = responseData.error.code;
+        const errorCode = responseData.error;
 
         if (errorCode === 101) {
           setError(t("tokenExpired"));
