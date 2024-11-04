@@ -24,7 +24,8 @@ export async function middleware(req: NextRequest) {
   }
 
   // 添加新的重定向��辑
-  if (req.nextUrl.pathname!== "/readme") {
+  // @ts-ignore
+  if (req.nextUrl.pathname !== "/readme") {
     return NextResponse.redirect(new URL("/readme", req.url));
   }
 }
