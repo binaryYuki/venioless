@@ -1,55 +1,99 @@
-# Next.js & NextUI Template
+# Venioless
 
-This is a template for creating applications using Next.js 14 (pages directory) and NextUI (v2).
+Venioless is a frontend project that reverse-engineers the [Venio Attendance System@King's College London](https://www.kcl.ac.uk/). This project utilizes several popular technologies, including but not limited to:
 
-[Try it on CodeSandbox](https://githubbox.com/nextui-org/next-pages-template)
+* React 18.3.1
+* Next.js 14.2.10
+* TypeScript 5.0.4
+* Tailwind CSS 3.4.3
+* Ant Design 5.21.4
+* Framer Motion 11.11.9
+* i18next 23.16.0
+* Sentry 8
 
->Note: Since Next.js 14, the pages router is recommend migrating to the [new App Router](https://nextjs.org/docs/app) to leverage React's latest features
->
->Read more: [Pages Router](https://nextjs.org/docs/pages)
+## Features
 
-## Technologies Used
+* Supports multiple languages (English, Chinese, etc.)
+* Responsive design suitable for various devices
+* Toggle between DARK MODE and LIGHT MODE
+* Error monitoring using Sentry
+* Supports internationalization (i18n)
+* Styling managed with Tailwind CSS
 
-- [Next.js 14](https://nextjs.org/docs/getting-started)
-- [NextUI](https://nextui.org)
-- [Tailwind CSS](https://tailwindcss.com)
-- [Tailwind Variants](https://tailwind-variants.org)
-- [TypeScript](https://www.typescriptlang.org)
-- [Framer Motion](https://www.framer.com/motion)
-- [next-themes](https://github.com/pacocoursey/next-themes)
-
-## How to Use
-
-To create a new project based on this template using `create-next-app`, run the following command:
-
-```bash
-npx create-next-app -e https://github.com/nextui-org/next-pages-template
-```
-
-### Install dependencies
-
-You can use one of them `npm`, `yarn`, `pnpm`, `bun`, Example using `npm`:
+## Installation
 
 ```bash
 npm install
 ```
 
-### Run the development server
+## Execution
 
 ```bash
 npm run dev
 ```
 
-### Setup pnpm (optional)
+## Technologies Used
 
-If you are using `pnpm`, you need to add the following code to your `.npmrc` file:
+### Frontend Framework
 
-```bash
-public-hoist-pattern[]=*@nextui-org/*
-```
+* React 18.3.1
+* Next.js 14.2.10
 
-After modifying the `.npmrc` file, you need to run `pnpm install` again to ensure that the dependencies are installed correctly.
+### UI Component Library
+
+* Ant Design 5.21.4
+* Lucide React 0.453.0
+* Radix UI 1.1.2
+
+### Styling Management
+
+* Tailwind CSS 3.4.3
+* PostCSS 8.4.38
+* Autoprefixer 10.4.19
+
+### Internationalization
+
+* i18next 23.16.0
+* next-i18next 15.3.1
+
+### Error Monitoring
+
+* Sentry 8
+
+### Utility Libraries
+
+* clsx 2.1.1
+* framer-motion 11.11.9
+* axios 1.7.7
+
+## Contribution
+
+If you wish to contribute code, please fork the repository and submit your changes. We welcome your contributions!
 
 ## License
 
-Licensed under the [MIT license](https://github.com/nextui-org/next-pages-template/blob/main/LICENSE).
+This project is licensed under the MIT License. You are free to use, modify, and distribute the project's code.
+
+## Version History
+
+* v1.0.0: Initialized project
+* v1.1.0: Added DARK MODE and LIGHT MODE toggle feature
+* v1.2.0: Added Sentry for error monitoring
+* v1.3.0: Updated dependency versions
+* v1.4.0: Added Lucide React component library
+* v1.5.0: Added Radix UI component library
+
+## Contact Us
+
+If you have any questions, please contact us:
+
+* Email: [akkk@tzpro.xyz](mailto:akkk@tzpro.xyz)
+* GitHub: [okidoki2me](https://github.com/okidoki2me)
+
+## TODO
+
+* Add more features
+* Fix BUGS
+* Optimize performance
+
+We hope you can join us and help make Venioless better!
