@@ -21,11 +21,11 @@ const Announcement: React.FC = () => {
         {t("announcement.opensource")}{" "}
         <a
           className="text-blue-500 hover:text-blue-700"
-          href="https://github.com/okidoki2me"
+          href="https://github.com/okidoki2me/venioless"
           rel="noopener noreferrer"
           target="_blank"
         >
-          https://github.com/okidoki2me
+          GITHUB
         </a>
       </p>
     </div>
