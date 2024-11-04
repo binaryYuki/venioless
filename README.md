@@ -1,6 +1,6 @@
 # Venioless
 
-Venioless is a frontend project that reverse-engineers the [Venio Attendance System@King's College London](https://www.kcl.ac.uk/). This project utilizes several popular technologies, including but not limited to:
+Venioless is a frontend project that reverse-engineers the [Venio Attendance System@King's College London](https://venio.kcl.ac.uk/). This project utilizes several popular technologies, including but not limited to:
 
 * React 18.3.1
 * Next.js 14.2.10
