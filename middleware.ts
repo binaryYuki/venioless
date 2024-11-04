@@ -4,7 +4,7 @@ const PUBLIC_FILE = /\.(.*)$/;
 
 export async function middleware(req: NextRequest) {
   if (
-    req.nextUrl.pathname != "/" ||
+    req.nextUrl.pathname!= "/" ||
     req.nextUrl.pathname.startsWith("/_next") ||
     req.nextUrl.pathname.includes("/api/") ||
     PUBLIC_FILE.test(req.nextUrl.pathname)
@@ -21,5 +21,10 @@ export async function middleware(req: NextRequest) {
         req.url,
       ),
     );
+  }
+
+  // 添加新的重定向��辑
+  if (req.nextUrl.pathname!== "/readme") {
+    return NextResponse.redirect(new URL("/readme", req.url));
   }
 }

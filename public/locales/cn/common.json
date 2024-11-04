@@ -31,6 +31,12 @@
   "noChosenCourse": "您未选择任何课程",
   "rateLimitError": "请求过于频繁，请稍后再试",
   "tokenExpired": "Venio验证过期，请尝试重新登录 Venio 系统后再试",
-  "htmlInputError102": "HTML输入错误，请检查输入的内容是否为完整的HTML代码"
+  "htmlInputError102": "HTML输入错误，请检查输入的内容是否为完整的HTML代码",
+  "announcement": {
+    "title": "重要公告",
+    "content": "你来晚了～ 本项目作者已受邀加入 NMES Venio 开发团队，故本项目目前限制白名单 IP 访问。",
+    "apology": "对于造成的不便，我们深感抱歉。",
+    "opensource": "本项目已开源，欢迎访问"
+  }
 }
 

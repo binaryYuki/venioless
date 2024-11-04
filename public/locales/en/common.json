@@ -32,6 +32,12 @@
   "noChosenCourse": "You have not chosen any course",
   "rateLimitError": "Request too frequent, please try again later",
   "tokenExpired": "Venio verification expired, please try again after re-login to Venio system",
-  "htmlInputError102": "HTML input error, please check if the input is a complete HTML document"
+  "htmlInputError102": "HTML input error, please check if the input is a complete HTML document",
+  "announcement": {
+    "title": "Important Announcement",
+    "content": "You're late! The author of this project has been invited to join the NMES development team, so this project is currently restricted to whitelist IP access.",
+    "apology": "We apologize for the inconvenience caused.",
+    "opensource": "This project has been open-sourced, welcome to visit"
+  }
 }
 
